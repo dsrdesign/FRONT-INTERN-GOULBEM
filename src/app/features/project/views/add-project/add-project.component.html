@@ -1,0 +1,66 @@
+<nav class="page-breadcrumb">
+     <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/project">Project</a></li>
+          <li class="breadcrumb-item active" aria-current="page">add</li>
+     </ol>
+</nav>
+
+<div class="row">
+     <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+               <div class="card-body">
+                    <h4 class="card-title">Add project</h4>
+               </div>
+          </div>
+     </div>
+</div>
+
+<div class="row">
+     <div class="col-md-12 stretch-card">
+          <div class="card">
+               <div class="card-body">
+                    <form [formGroup]="projetForm">
+                         <div class="row">
+                              <div class="col-sm-6">
+                                   <div class="mb-3">
+                                        <label class="form-label">Project Name</label>
+                                        <input type="text" class="form-control" placeholder="Enter project name"
+                                             formControlName="nom">
+                                        <div class="text-danger"
+                                             *ngIf="projetForm.get('nom')?.invalid && (projetForm.get('nom')?.dirty || submitted || projetForm.get('nom')?.touched)">
+                                             Le nom est requis.
+                                        </div>
+                                   </div>
+                              </div><!-- Col -->
+                              <div class="col-sm-6">
+                                   <div class="mb-3">
+                                        <label class="form-label">Project duration</label>
+                                        <input type="number" class="form-control" placeholder="Enter project duration"
+                                             formControlName="dureeProjet">
+                                        <div class="text-danger"
+                                             *ngIf="projetForm.get('dureeProjet')?.invalid && (projetForm.get('dureeProjet')?.dirty || submitted || projetForm.get('dureeProjet')?.touched)">
+                                             La durée est requis.
+                                        </div>
+                                   </div>
+                              </div><!-- Col -->
+                         </div><!-- Row -->
+                         <div class="row">
+                              <div class="col-sm-12">
+                                   <div class="mb-3">
+                                        <label class="form-label">Description</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                             rows="5" formControlName="description" ></textarea>
+                                        <div class="text-danger"
+                                             *ngIf="projetForm.get('description')?.invalid && (projetForm.get('description')?.dirty || submitted || projetForm.get('description')?.touched)">
+                                             La description est requis.
+                                        </div>
+                                   </div>
+                              </div><!-- Col -->
+                         </div><!-- Row -->
+
+                    </form>
+                    <button type="button" class="btn btn-primary submit" (click)="save()">Save project</button>
+               </div>
+          </div>
+     </div>
+</div>

@@ -1,0 +1,145 @@
+<nav class="page-breadcrumb">
+     <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/intern">Intern</a></li>
+          <li class="breadcrumb-item active" aria-current="page">add</li>
+     </ol>
+</nav>
+
+<div class="row">
+     <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+               <div class="card-body">
+                    <h4 class="card-title">Add intern</h4>
+                    
+               </div>
+          </div>
+     </div>
+</div>
+
+<div class="row">
+     <div class="col-md-12 stretch-card">
+          <div class="card">
+               <div class="card-body">
+                    <form [formGroup]="stagiaireForm">
+                         <div class="row">
+                              <div class="col-sm-6">
+                                   <div class="mb-3">
+                                        <label class="form-label">First Name</label>
+                                        <input type="text" class="form-control" placeholder="Enter first name"
+                                             formControlName="nom">
+                                        <div class="text-danger"
+                                             *ngIf="stagiaireForm.get('nom')?.invalid && (stagiaireForm.get('nom')?.dirty || submitted|| stagiaireForm.get('nom')?.touched)">
+                                             name required.
+                                        </div>
+                                   </div>
+                              </div><!-- Col -->
+                              <div class="col-sm-6">
+                                   <div class="mb-3">
+                                        <label class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" placeholder="Enter last name"
+                                             formControlName="prenom">
+                                        <div class="text-danger"
+                                             *ngIf="stagiaireForm.get('prenom')?.invalid && (stagiaireForm.get('prenom')?.dirty || submitted|| stagiaireForm.get('prenom')?.touched)">
+                                             Le prenom est requis.
+                                        </div>
+                                   </div>
+                              </div><!-- Col -->
+                         </div><!-- Row -->
+                         <div class="row">
+                              <div class="col-sm-6">
+                                   <div class="mb-3">
+                                        <label class="form-label">Linkedin</label>
+                                        <input type="url" class="form-control" autocomplete="off"
+                                             placeholder="Enter their linkedin account" formControlName="linkedin">
+                                        <div class="text-danger"
+                                             *ngIf="stagiaireForm.get('linkedin')?.invalid && (stagiaireForm.get('linkedin')?.dirty || submitted|| stagiaireForm.get('linkedin')?.touched)">
+                                             Le lien linkedin est requis.
+                                        </div>
+                                   </div>
+                              </div><!-- Col -->
+                              <div class="col-sm-6">
+                                   <div class="mb-3">
+                                        <label class="form-label">Trainee number</label>
+                                        <input type="text" class="form-control" autocomplete="off"
+                                             placeholder="Enter Trainee number" formControlName="matriculeStagiaire">
+                                        <div class="text-danger"
+                                             *ngIf="stagiaireForm.get('matriculeStagiaire')?.invalid && (stagiaireForm.get('matriculeStagiaire')?.dirty || submitted|| stagiaireForm.get('matriculeStagiaire')?.touched)">
+                                             Le matricule est requis.
+                                        </div>
+                                   </div>
+                              </div><!-- Col -->
+                         </div><!-- Row -->
+                         <div class="row">
+                              <div class="col-sm-4">
+                                   <label class="form-label">Status</label>
+                                   <select class="form-select form-select-sm mb-3" formControlName="statut">
+                                        <option disabled selected value="ACTIF">Select status</option>
+                                        <option value="ACTIF">Actif</option>
+                                        <option value="INACTIF">Inactif</option>
+                                   </select>
+                                   <div class="text-danger"
+                                        *ngIf="stagiaireForm.get('statut')?.invalid && (stagiaireForm.get('statut')?.dirty || submitted|| stagiaireForm.get('statut')?.touched)">
+                                        Le statut est requise.
+                                   </div>
+                              </div><!-- Col -->
+                              <div class="col-sm-4">
+                                   <label class="form-label">Department</label>
+                                   <select class="form-select form-select-sm mb-3" formControlName="codeDepartement">
+                                        <option class="text-black" value="" selected disabled>Select department</option>
+                                        <option *ngFor="let stagiare of stagiaires" class="text-black"
+                                             value={{stagiare.codeDepartement}} selected>{{stagiare.nom | uppercase}}
+                                        </option>
+
+                                   </select>
+                                   <div class="text-danger"
+                                        *ngIf="stagiaireForm.get('codeDepartement')?.invalid && (stagiaireForm.get('codeDepartement')?.dirty || submitted|| stagiaireForm.get('codeDepartement')?.touched)">
+                                        Le departement est requis.
+                                   </div>
+                              </div><!-- Col -->
+                              <div class="col-sm-4">
+                                   <label class="form-label">Responsable</label>
+                                   <select class="form-select form-select-sm mb-3" formControlName="idResponsable" >
+                                        <option class="text-black" value="" selected disabled>Select Manager</option>
+                                        <option *ngFor="let responsable of responsables" class="text-black"
+                                             value={{responsable.idResponsable}}>{{responsable.nom | uppercase}}
+                                             {{responsable.prenom | uppercase}}</option>
+
+                                   </select>
+                                   <div class="text-danger"
+                                   *ngIf="stagiaireForm.get('idResponsable')?.invalid && (stagiaireForm.get('idResponsable')?.dirty || submitted|| stagiaireForm.get('idResponsable')?.touched)">
+                                   Le responsable est requis.
+                              </div>
+                              </div><!-- Col -->
+                         </div><!-- Row -->
+                         <div class="row">
+
+                              <div class="col-sm-6">
+                                   <div class="mb-3">
+                                        <label class="form-label">Start of the internship</label>
+                                        <input class="form-control mb-4 mb-md-0" type="date" placeholder="dd-mm-yyyy"
+                                             formControlName="debutStage" />
+                                        <div class="text-danger"
+                                             *ngIf="stagiaireForm.get('debutStage')?.invalid && (stagiaireForm.get('debutStage')?.dirty || submitted|| stagiaireForm.get('debutStage')?.touched)">
+                                             La date de debut est requise.
+                                        </div>
+                                   </div>
+                              </div><!-- Col -->
+                              <div class="col-sm-6">
+                                   <div class="mb-3">
+                                        <label class="form-label">End of internship</label>
+                                        <input class="form-control mb-4 mb-md-0" type="date" placeholder="dd-mm-yyyy"
+                                             formControlName="finStage" />
+                                        <div class="text-danger"
+                                             *ngIf="stagiaireForm.get('debutStage')?.invalid && (stagiaireForm.get('debutStage')?.dirty || submitted|| stagiaireForm.get('debutStage')?.touched)">
+                                             La date de fin est requise.
+                                        </div>
+                                   </div>
+                              </div><!-- Col -->
+                         </div><!-- Row -->
+
+                    </form>
+                    <button type="button" class="btn btn-primary submit" (click)="save()">Save intern</button>
+               </div>
+          </div>
+     </div>
+</div>

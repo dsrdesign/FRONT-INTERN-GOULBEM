@@ -1,0 +1,62 @@
+<nav class="page-breadcrumb pt-5 px-5">
+     <ol class="breadcrumb">
+          <li class="breadcrumb-item">Goulbam</li>
+          <li class="breadcrumb-item">intern</li>
+          <li class="breadcrumb-item active" aria-current="page">profile</li>
+     </ol>
+</nav>
+
+<div class="row p-5">
+     <div class="col-md-12">
+          <div class="card">
+               <div class="card-body">
+                    <div class="container-fluid d-flex justify-content-between">
+                         <div class="col-lg-6 ps-0">
+                              <a routerLink="." class="nobleui-logo d-block mt-3">Trainee number :
+                                   <span>{{detailIntern.stagiaire.matriculeStagiaire}}</span></a>
+                              <p class="mt-1 mb-1"><b>{{detailIntern.stagiaire.nom}}
+                                        {{detailIntern.stagiaire.prenom}}</b></p>
+                              <p>{{detailIntern.stagiaire.statut}},<br> {{detailIntern.projet.length}} Projects,<br><a
+                                        href={{detailIntern.stagiaire.linkedin}}
+                                        target="_blank">{{detailIntern.stagiaire.linkedin}}</a></p>
+                         </div>
+                         <div class="col-lg-3 ps-0">
+                              <h6 class=" text-end mt-4 mb-2">Start of the internship : <b class="text-uppercase">
+                                        {{detailIntern.stagiaire.debutStage | date}}</b></h6>
+                              <h6 class=" text-end mb-5 pb-4">End of the internship : <b class="text-uppercase">
+                                        {{detailIntern.stagiaire.finStage | date}}</b></h6>
+                         </div>
+                    </div>
+                    <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+                         <div class="table-responsive w-100">
+                              <table class="table table-bordered">
+                                   <thead>
+                                        <tr>
+                                             <th>#</th>
+                                             <th>Project name</th>
+                                             <th class="">Taches</th>
+                                             <th class="">Project duration</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <tr *ngFor="let projet of detailIntern?.projet; let i = index">
+                                             <td class="col-lg-2">{{i + 1}}</td>
+                                             <td class="col-lg-3">{{projet.nom}}</td>
+                                             <td class="col-lg-5">
+                                                  <div class="d-flex flex-column">
+                                                       <p class="p-2"
+                                                            *ngFor=" let tache of tasks(projet.idProjet)">-
+                                                            {{tache.description}}</p>
+                                                  </div>
+                                             </td>
+                                             <td class="col-lg-2">{{projet.dureeProjet}}</td>
+
+                                        </tr>
+                                   </tbody>
+                              </table>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
